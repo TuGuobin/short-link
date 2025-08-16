@@ -1,0 +1,27 @@
+/* HistoryItem组件样式 */
+.history-item {
+  padding: 0.5rem 0.8rem;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+  color: var(--text-color);
+  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.history-item:hover:not(:disabled) {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.history-item:disabled {
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  cursor: not-allowed;
+  box-shadow: none;
+}

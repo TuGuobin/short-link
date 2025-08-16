@@ -1,0 +1,42 @@
+/* 主题变量 */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --accent-color: #111111;
+  --accent-hover-color: #333333;
+  --border-color: #e0e0e0;
+  --error-bg-color: #ff3b3022;
+  --error-color: #ff3b30;
+  --surface-color: #ffffff;
+  --input-bg-color: #ffffff;
+  --placeholder-color: #888888;
+  --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+/* 深色模式 */
+.dark {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --accent-color: #ffffff;
+  --accent-hover-color: #e0e0e0;
+  --border-color: #333333;
+  --error-bg-color: #ff525222;
+  --error-color: #ff5252;
+  --surface-color: #1e1e1e;
+  --input-bg-color: #1e1e1e;
+  --placeholder-color: #aaaaaa;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+/* 全局动画 */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 59, 48, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 59, 48, 0);
+  }
+}
