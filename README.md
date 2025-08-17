@@ -4,7 +4,9 @@
 
 ## 📹 项目演示
 
-<video src="./public/short-link.mp4" controls></video>
+<a href="./assets/short-link-demo.mp4" target="_blank">
+  <img src="./assets/short-link.gif" alt="项目演示" width="100%" />
+</a>
 
 ## ✨ 功能特点
 
