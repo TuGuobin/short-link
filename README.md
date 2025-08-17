@@ -4,7 +4,7 @@
 
 ## 📹 项目演示
 
-![Short Link Demo](./public/short-link.mp4)
+<video src="./public/short-link.mp4" controls></video>
 
 ## ✨ 功能特点
 
