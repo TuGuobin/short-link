@@ -43,7 +43,9 @@ function App() {
 
   // 输入时暂停语音识别
   const handleInput = () => {
-    if (!inputText) return
+    if (!isListening) return
+    setInputText((prev) => prev + interimText)
+    setInterimText("")
     toggleListening()
   }
 
