@@ -2,7 +2,7 @@ import type { SchemeType } from "../types/scheme"
 
 // API配置
 const BASE_URL = import.meta.env.VITE_BASE_URL || '';
-const API_URL = `${BASE_URL}/api/chat`;
+const API_URL = `${BASE_URL}/chat`;
 
 interface LLMRequest {
   messages: string;

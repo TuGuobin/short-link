@@ -9,5 +9,5 @@ export const Config = {
   openaiModel: process.env.OPENAI_MODEL || "deepseek-v3",
   port: process.env.PORT || 8000,
   allowedOrigin: process.env.NODE_ENV === "production" ? "https://short-link.tuguobin.site" : "*",
-  csvFilePath: process.env.NODE_ENV === "production" ? path.join(process.cwd(), "llms", "src/data/scheme.csv") : path.join(process.cwd(), "src/data/scheme.csv"),
+  csvFilePath: path.join(process.cwd(), "llms", "src/data/scheme.csv")
 }
