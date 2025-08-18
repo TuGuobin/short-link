@@ -1,21 +1,22 @@
-import fs from 'fs'
+import fs from "fs"
+import { Config } from "../config/env.js"
 
 class CsvService {
   constructor() {
-    this.csvPath = 'src/data/scheme.csv'
+    this.csvPath = Config.csvFilePath
     this.appList = []
-    this.formattedAppList = ''
+    this.formattedAppList = ""
   }
 
   async loadData() {
     try {
-      const csvData = fs.readFileSync(this.csvPath, 'utf-8')
+      const csvData = fs.readFileSync(this.csvPath, "utf-8")
       this.appList = csvData
-        .split('\n')
+        .split("\n")
         .slice(1)
         .filter((line) => line.trim())
         .map((line) => {
-          const [category, appName, action, urlScheme] = line.split('|')
+          const [category, appName, action, urlScheme] = line.split("|")
           return {
             category: category.trim(),
             appName: appName.trim(),
@@ -24,13 +25,11 @@ class CsvService {
           }
         })
 
-      this.formattedAppList = this.appList
-        .map((item) => `${item.appName || '无应用名称'} - ${item.action || '无操作'} - ${item.urlScheme}`)
-        .join('\n')
+      this.formattedAppList = this.appList.map((item) => `${item.appName || "无应用名称"} - ${item.action || "无操作"} - ${item.urlScheme}`).join("\n")
 
       return this.appList
     } catch (error) {
-      console.error('Failed to load CSV data:', error)
+      console.error("Failed to load CSV data:", error)
       throw error
     }
   }
