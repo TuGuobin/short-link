@@ -17,6 +17,7 @@ function App() {
   // 状态管理
   const [history, setHistory] = useState<Array<SchemeType>>(() => HistoryService.getHistory(defaultSchemes))
   const [inputText, setInputText] = useState("")
+  const [interimText, setInterimText] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -30,10 +31,21 @@ function App() {
     onResult: (transcript, isFinal) => {
       if (isFinal) {
         setInputText((prev) => prev + transcript)
+        setInterimText("")
+      } else {
+        setInterimText(transcript)
       }
     },
     lang: "zh-CN",
+    interimResults: true,
+    continuous: true,
   })
+
+  // 输入时暂停语音识别
+  const handleInput = () => {
+    if (!inputText) return
+    toggleListening()
+  }
 
   // 处理语音识别错误
   useEffect(() => {
@@ -112,7 +124,7 @@ function App() {
     <div className="app-container">
       <Header isListening={isListening} toggleListening={toggleListening} isLoading={isLoading} />
       <HistoryList history={history} onItemClick={handleOpenScheme} onClearAll={handleClearAll} isLoading={isLoading} />
-      <InputForm inputText={inputText} setInputText={setInputText} onSubmit={handleSubmit} isLoading={isLoading} inputRef={inputRef} />
+      <InputForm inputText={inputText + interimText} setInputText={setInputText} onInput={handleInput} onSubmit={handleSubmit} isLoading={isLoading} inputRef={inputRef} />
       <ErrorDisplay error={error} />
     </div>
   )

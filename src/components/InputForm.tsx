@@ -5,6 +5,7 @@ interface InputFormProps {
   inputText: string;
   setInputText: (text: string) => void;
   onSubmit: (e: FormEvent) => void;
+  onInput?: (e: FormEvent) => void;
   isLoading: boolean;
   inputRef: RefObject<HTMLTextAreaElement | null>;
 }
@@ -15,6 +16,7 @@ interface InputFormProps {
 export const InputForm: FC<InputFormProps> = ({
   inputText,
   setInputText,
+  onInput,
   onSubmit,
   isLoading,
   inputRef
@@ -35,6 +37,7 @@ export const InputForm: FC<InputFormProps> = ({
         maxLength={100}
         onChange={(e) => setInputText(e.target.value)}
         onKeyDown={handleKeyDown}
+        onInput={onInput}
         placeholder="输入命令（如“小红书搜索北京旅游攻略”）"
         disabled={isLoading}
         className="search-input"
