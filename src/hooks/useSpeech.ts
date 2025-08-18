@@ -80,6 +80,7 @@ export const useSpeech = ({ onResult, onStart, onEnd, onError, lang = "zh-CN", c
    */
   useEffect(() => {
     // 避免重复初始化
+    if (SpeechRecognition.current) return
     if (recognitionRef.current) return
 
     SpeechRecognition.current = initSpeechRecognition()
@@ -96,8 +97,7 @@ export const useSpeech = ({ onResult, onStart, onEnd, onError, lang = "zh-CN", c
       recognitionRef.current.lang = lang
       recognitionRef.current.maxAlternatives = maxAlternatives
     } catch (initError) {
-      console.error("初始化语音识别失败:", initError)
-      setError("初始化语音识别失败")
+      setError("初始化语音识别失败: " + initError)
     }
 
     // 组件卸载时清理
@@ -122,8 +122,7 @@ export const useSpeech = ({ onResult, onStart, onEnd, onError, lang = "zh-CN", c
           onResult(transcript, isFinal)
         }
       } catch (resultError) {
-        console.error("处理语音识别结果失败:", resultError)
-        setError("处理语音识别结果失败")
+        setError("处理语音识别结果失败: " + resultError)
       }
     },
     [onResult]
@@ -153,9 +152,7 @@ export const useSpeech = ({ onResult, onStart, onEnd, onError, lang = "zh-CN", c
         }, 100)
       }
       recognitionRef.current.onerror = (err: Error) => {
-        console.error("语音识别错误:", err)
         if (onError) onError(err)
-
         setError(`语音识别错误: ${err.message || "未知错误"}`)
         setIsListening(false)
       }
@@ -165,8 +162,7 @@ export const useSpeech = ({ onResult, onStart, onEnd, onError, lang = "zh-CN", c
       setIsListening(true)
       setError(null)
     } catch (startError) {
-      console.error("启动语音识别失败:", startError)
-      setError("启动语音识别失败")
+      setError("启动语音识别失败: " + startError)
     }
   }, [isListening, handleSpeechResult, onError, onStart])
 
@@ -182,8 +178,7 @@ export const useSpeech = ({ onResult, onStart, onEnd, onError, lang = "zh-CN", c
       cleanupRecognition()
       setIsListening(false)
     } catch (stopError) {
-      console.error("停止语音识别失败:", stopError)
-      setError("停止语音识别失败")
+      setError("停止语音识别失败: " + stopError)
     }
   }, [isListening, cleanupRecognition, onEnd])
 
