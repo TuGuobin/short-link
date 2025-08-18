@@ -36,6 +36,10 @@ function App() {
         setInterimText(transcript)
       }
     },
+    onEnd: () => {
+      setInputText((prev) => prev + interimText)
+      setInterimText("")
+    },
     lang: "zh-CN",
     interimResults: true,
     continuous: true,
@@ -44,8 +48,6 @@ function App() {
   // 输入时暂停语音识别
   const handleInput = () => {
     if (!isListening) return
-    setInputText((prev) => prev + interimText)
-    setInterimText("")
     toggleListening()
   }
 

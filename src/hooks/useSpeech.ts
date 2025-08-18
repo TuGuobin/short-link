@@ -6,6 +6,9 @@ import type { SpeechRecognitionEvent, SpeechRecognitionType } from "../types/spe
  */
 export interface UseSpeechOptions {
   onResult?: (text: string, isFinal: boolean) => void
+  onStart?: () => void
+  onEnd?: () => void
+  onError?: (error: Error) => void
   lang?: string
   continuous?: boolean
   interimResults?: boolean
@@ -37,7 +40,7 @@ const initSpeechRecognition = (): typeof SpeechRecognitionType | null => {
  * 语音识别自定义钩子
  * 提供语音识别功能，可用于语音输入
  */
-export const useSpeech = ({ onResult, lang = "zh-CN", continuous = true, interimResults = true, maxAlternatives = 1 }: UseSpeechOptions = {}): UseSpeechReturn => {
+export const useSpeech = ({ onResult, onStart, onEnd, onError, lang = "zh-CN", continuous = true, interimResults = true, maxAlternatives = 1 }: UseSpeechOptions = {}): UseSpeechReturn => {
   const [isListening, setIsListening] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const recognitionRef = useRef<SpeechRecognitionType | null>(null)
@@ -132,6 +135,7 @@ export const useSpeech = ({ onResult, lang = "zh-CN", continuous = true, interim
   const startListening = useCallback(() => {
     // 防止重复启动
     if (!recognitionRef.current || isListening) return
+    if (onStart) onStart()
 
     try {
       // 设置事件监听器
@@ -150,6 +154,8 @@ export const useSpeech = ({ onResult, lang = "zh-CN", continuous = true, interim
       }
       recognitionRef.current.onerror = (err: Error) => {
         console.error("语音识别错误:", err)
+        if (onError) onError(err)
+
         setError(`语音识别错误: ${err.message || "未知错误"}`)
         setIsListening(false)
       }
@@ -162,7 +168,7 @@ export const useSpeech = ({ onResult, lang = "zh-CN", continuous = true, interim
       console.error("启动语音识别失败:", startError)
       setError("启动语音识别失败")
     }
-  }, [isListening, handleSpeechResult])
+  }, [isListening, handleSpeechResult, onError, onStart])
 
   /**
    * 停止语音识别
@@ -170,6 +176,7 @@ export const useSpeech = ({ onResult, lang = "zh-CN", continuous = true, interim
   const stopListening = useCallback(() => {
     // 防止重复停止
     if (!recognitionRef.current || !isListening) return
+    if (onEnd) onEnd()
 
     try {
       cleanupRecognition()
@@ -178,7 +185,7 @@ export const useSpeech = ({ onResult, lang = "zh-CN", continuous = true, interim
       console.error("停止语音识别失败:", stopError)
       setError("停止语音识别失败")
     }
-  }, [isListening, cleanupRecognition])
+  }, [isListening, cleanupRecognition, onEnd])
 
   /**
    * 切换语音识别状态
