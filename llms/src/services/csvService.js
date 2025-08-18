@@ -1,9 +1,8 @@
 import fs from 'fs'
-import path from 'path'
 
 class CsvService {
   constructor() {
-    this.csvPath = path.join(process.cwd(), 'src/data/scheme.csv')
+    this.csvPath = 'src/data/scheme.csv'
     this.appList = []
     this.formattedAppList = ''
   }
