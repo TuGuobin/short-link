@@ -1,145 +1,191 @@
-# Short Link - 智能应用链接启动器
+# Short Link
 
-一个轻量级的智能应用链接启动工具，支持文本和语音输入，能够识别并打开各种应用的深层链接。
+<div align="center">
+  <a href="./assets/short-link-demo.mp4" target="_blank">
+    <picture>
+      <source srcset="./assets/short-link-1920.gif" media="(min-width: 1920px)" />
+      <source srcset="./assets/short-link-1080.gif" media="(min-width: 1080px)" />
+      <img src="./assets/short-link-1080.gif" alt="Short Link Demo" width="100%" />
+    </picture>
+  </a>
+  <p><em>An intelligent application link launcher</em></p>
+</div>
 
-## 📹 项目演示
+## 🌐 Language / 语言
 
-<a href="./assets/short-link-demo.mp4" target="_blank">
-  <img src="./assets/short-link.gif" alt="项目演示" width="100%" />
-</a>
+[English](README.md) | [中文](README_ZH.md)
 
-## ✨ 功能特点
+## 🔗 Online Demo
 
-- **智能识别**：通过文本指令自动分析并生成对应的应用链接
-- **语音输入**：支持语音命令，无需手动输入
-- **历史记录**：保存最近使用的应用链接，方便快速访问
-- **跨平台支持**：针对iOS和Android设备提供不同的应用链接
-- **深色模式**：根据系统设置自动切换亮色/深色主题
-- **友好的错误处理**：当应用未安装时，提供应用商店链接
-- **操作确认**：清除历史记录时提供确认提示，防止误操作
+[Try it online](https://short-link.tuguobin.site)
 
-## 🚀 快速开始
+## 🚀 Overview
 
-### 安装依赖
+Short Link is an elegant, lightweight tool designed to intelligently recognize and launch deep links to various applications. It supports both text and voice input, providing a seamless experience across platforms.
+
+## ✨ Key Features
+
+- **AI-Powered Recognition**: Leverages LLM technology to analyze natural language commands and generate corresponding application links
+- **Voice Input Support**: Hands-free operation through voice recognition
+- **Cross-Platform Compatibility**: Provides optimized links for both iOS and Android devices
+- **Intelligent Error Handling**: Offers app store redirection when applications are not installed
+- **Dark Mode Integration**: Automatically adapts to system theme preferences
+- **History Management**: Stores recent links for quick access
+
+## 🛠️ Technology Stack
+
+**Frontend**:
+
+- React 19.1.1
+- TypeScript 5.8.3
+- Vite 7.1.2
+- Web Speech API
+
+**Backend**:
+
+- Express.js
+- OpenAI API Integration
+- CSV Data Management
+
+## 📁 Project Structure
+
+The project consists of two main components:
+
+- **Frontend**: A React application that provides the user interface and handles user input
+- **LLM Service**: A Node.js service that processes commands and generates application links
+
+## 📱 Supported Applications
+
+Short Link supports a comprehensive range of applications across various categories. Here's a detailed breakdown:
+
+### System Applications
+
+| Application | Features | Platform |
+|-------------|----------|----------|
+| Windows Settings | System Settings, Apps, Bluetooth, Network, Personalization | Windows |
+| macOS Built-in Apps | Messages, Phone, Mail, Calendar, Photos, Maps | macOS |
+| Microsoft Office | Word, PowerPoint, Excel | Cross-platform |
+
+### Social Media
+
+| Application | Features | Platform |
+|-------------|----------|----------|
+| WeChat | QR Code Scanning, Payment Code, Mini Programs | iOS/Android |
+| Alipay | Payment Code, Collection Code, Credit Card Payment, Ride Hailing | iOS/Android |
+| QQ | QR Code Scanning, User Profile | iOS/Android |
+| Xiaohongshu (RED) | Search, Posts, User Profile | iOS/Android |
+| Weibo | QR Code Scanning, Search, Post Creation | iOS/Android |
+| Zhihu | QR Code Scanning, Search, Questions | iOS/Android |
+| Telegram | Messaging | iOS/Android |
+| Facebook | QR Code Scanning | iOS/Android |
+| Instagram | Search | iOS/Android |
+
+### E-commerce
+
+| Application | Features | Platform |
+|-------------|----------|----------|
+| Taobao | Search, Store Search, QR Code Scanning | iOS/Android |
+| JD | Search, QR Code Scanning, Payment Code, Order Management | iOS/Android |
+| Pinduoduo | Search | iOS/Android |
+| Tmall | Search | iOS/Android |
+| Suning | Basic Functions | iOS/Android |
+| Xiaomi Mall | Basic Functions | iOS/Android |
+
+### Video & Live Streaming
+
+| Application | Features | Platform |
+|-------------|----------|----------|
+| Bilibili | Search, User Page, Live Streaming, History, Favorites | iOS/Android |
+| Douyin (TikTok) | Search, User Profile, Videos, Live Streaming | iOS/Android |
+| Kuaishou | Search, QR Code Scanning, User Profile, Videos, Live Streaming | iOS/Android |
+| Tencent Video | Basic Functions | iOS/Android |
+| Youku | Basic Functions | iOS/Android |
+| iQiyi | QR Code Scanning | iOS/Android |
+| YouTube | Search | iOS/Android |
+| Huya | Basic Functions | iOS/Android |
+| Douyu | Basic Functions | iOS/Android |
+
+### Lifestyle & Utilities
+
+| Application | Features | Platform |
+|-------------|----------|----------|
+| Meituan | Search, Hotel Search, Bike Sharing, Ride Hailing | iOS/Android |
+| Meituan Waimai | Food Delivery Search | iOS/Android |
+| Ele.me | Food Delivery, QR Code Scanning | iOS/Android |
+| Cainiao | Package Tracking, ID Code | iOS/Android |
+| Gaode Map | Navigation | iOS/Android |
+| Baidu Map | Basic Functions | iOS/Android |
+| Tencent Map | Basic Functions | iOS/Android |
+| Didi Chuxing | Ride Hailing | iOS/Android |
+
+### Music & Audio
+
+| Application | Features | Platform |
+|-------------|----------|----------|
+| NetEase Cloud Music | Song Recognition, Downloaded Music | iOS/Android |
+| QQ Music | Music Recognition | iOS/Android |
+| Himalaya | Basic Functions | iOS/Android |
+| Douban FM | Basic Functions | iOS/Android |
+| Xiami Music | Personal Radio, Song Recognition | iOS/Android |
+
+### Productivity
+
+| Application | Features | Platform |
+|-------------|----------|----------|
+| Feishu (Lark) | QR Code Scanning, Minutes, Attendance, Calendar, Tasks, Documents | iOS/Android |
+| DingTalk | QR Code Scanning, Profile | iOS/Android |
+| WeChat Work | QR Code Scanning, Contacts | iOS/Android |
+| Tencent Meeting | Basic Functions | iOS/Android |
+| Notion | Basic Functions | iOS/Android |
+| Evernote | Basic Functions | iOS/Android |
+| Youdao Cloud Notes | Basic Functions | iOS/Android |
+
+### Finance
+
+| Application | Features | Platform |
+|-------------|----------|----------|
+| China Merchants Bank | Basic Functions | iOS/Android |
+| China Construction Bank | Basic Functions | iOS/Android |
+| Industrial and Commercial Bank of China | Basic Functions | iOS/Android |
+| UnionPay | QR Code Scanning, Payment Code, Transit Code, Credit Card Payment | iOS/Android |
+
+### Browsers & Tools
+
+| Application | Features | Platform |
+|-------------|----------|----------|
+| Google Chrome | URL Search | iOS/Android |
+| UC Browser | URL Search | iOS/Android |
+| QQ Browser | URL Search | iOS/Android |
+| Baidu Browser | Basic Functions | iOS/Android |
+| Firefox | Basic Functions | iOS/Android |
+| Quark Browser | Basic Functions | iOS/Android |
+
+### Developer Tools
+
+| Application | Platform |
+|-------------|----------|
+| Apifox | Cross-platform |
+| Clash | Cross-platform |
+| OpenVPN Connect | Cross-platform |
+| SourceTree | Cross-platform |
+| XMind | Cross-platform |
+| uTools | Cross-platform |
+| WebStorm | Cross-platform |
+| IntelliJ IDEA | Cross-platform |
+
+## ⚙️ Quick Start
 
 ```bash
+# Install dependencies
 npm install
-```
 
-### 启动开发服务器
-
-```bash
+# Start development server
 npm run dev
-```
 
-### 构建生产版本
-
-```bash
+# Build for production
 npm run build
 ```
 
-### 代码检查
-
-```bash
-npm run lint
-```
-
-### 预览构建结果
-
-```bash
-npm run preview
-```
-
-## 📁 项目结构
-
-```
-src/
-├── api/            # API请求相关代码
-├── components/     # React组件
-├── hooks/          # 自定义React钩子
-├── services/       # 业务逻辑服务
-├── types/          # TypeScript类型定义
-├── utils/          # 工具函数
-├── styles/         # CSS样式文件
-├── App.tsx         # 应用主组件
-└── main.tsx        # 应用入口
-```
-
-## 🎯 核心功能
-
-### 文本命令解析
-
-输入自然语言命令（如"小红书搜索北京旅游攻略"），系统会自动分析并生成对应的应用链接。
-
-### 语音识别输入
-
-点击麦克风按钮，通过语音输入命令，系统会将语音转换为文本并进行处理。
-
-### 应用链接启动
-
-系统会根据当前设备类型（iOS/Android）选择合适的应用链接，并尝试打开对应应用。若应用未安装，则会尝试跳转到应用商店。
-
-### 历史记录管理
-
-最近使用的链接会被保存到本地存储，方便快速再次访问。支持一键清除所有历史记录，并提供操作确认提示。
-
-## 🛠️ 技术栈
-
-- **React 19.1.1** - 前端UI框架
-- **React DOM 19.1.1** - React DOM绑定
-- **TypeScript 5.8.3** - 类型安全的JavaScript超集
-- **Vite 7.1.2** - 现代构建工具
-- **ESLint 9.33.0** - 代码质量检查工具
-- **Web Speech API** - 语音识别功能
-- **LocalStorage** - 本地数据存储
-
-## ⚙️ 配置说明
-
-项目使用环境变量来配置API地址：
-
-- 在开发环境中，创建`.env`文件并设置`VITE_BASE_URL`（默认为`http://localhost:8000`）
-- 在生产环境中，使用`.env.production`文件
-
-API请求会发送到`${VITE_BASE_URL}/api/chat`接口，并设置30秒超时时间。
-
-## 📱 支持的应用链接
-
-当前支持多种常用应用的链接，包括但不限于：
-
-- 微信（扫一扫、付款码）
-- 支付宝（付款码、收款码）
-- 小红书搜索
-- Bilibili搜索
-- 抖音搜索
-- 美团搜索
-- 网易云音乐（听歌识曲）
-
-## 🔧 开发指南
-
-### 组件开发
-
-新增组件应放在`src/components`目录下，并遵循现有的组件结构和命名规范。所有组件样式文件统一放在`src/styles/components`目录中。
-
-### 服务扩展
-
-添加新的业务逻辑应在`src/services`目录下创建相应的服务类，如`HistoryService`用于管理历史记录。
-
-### API调用
-
-所有API调用应封装在`src/api`目录下，并处理好错误情况，包括超时处理、响应格式验证等。
-
-### 自定义钩子
-
-可复用的React逻辑应封装在`src/hooks`目录下的自定义钩子中，如`useSpeech`用于语音识别功能。
-
-## 🤝 贡献指南
-
-欢迎提交Issue和Pull Request来帮助改进这个项目。
-
-## 📄 许可证
+## 📄 License
 
 [MIT License](LICENSE)
-
-## 📧 联系我们
-
-如有任何问题或建议，请随时联系我们。
