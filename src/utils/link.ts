@@ -48,7 +48,7 @@ export function openScheme(options: OpenSchemeOptions): () => void {
     throw new Error("缺少schemeUrl参数")
   }
 
-  const isIOS = /iPad|iPhone|iPod|AppleWebKit/.test(navigator.userAgent)
+  const isIOS = /iPad|iPhone|iPod|Mac\s*OS/.test(navigator.userAgent)
   const url = isIOS ? schemeUrl.ios : schemeUrl.android
 
   if (!url) {
